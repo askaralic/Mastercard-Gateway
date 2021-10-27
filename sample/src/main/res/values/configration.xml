@@ -1,0 +1,14 @@
+<resources>
+    <string name="sample_card_holder_name"></string>
+    <string name="sample_card_number"></string>
+    <string name="sample_card_expiry_month"></string>
+    <string name="sample_card_expiry_year"></string>
+    <string name="sample_card_cvv"></string>
+
+    <string name="merchant_id"></string>
+    <string name="merchant_url"></string>
+    <string name="merchant_gateway_username"></string>
+    <string name="merchant_gateway_password"></string>
+
+
+</resources>

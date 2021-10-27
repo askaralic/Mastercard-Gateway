@@ -1,0 +1,34 @@
+language: android
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-28.0.3
+    - android-29
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+# workaround for license accepting issue
+before_install:
+  - yes | sdkmanager "platforms;android-29"
+
+# dependency caching
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+script: travis_retry ./gradlew clean --refresh-dependencies gateway-android:lintRelease gateway-android:testReleaseUnitTest gateway-android:assembleRelease gateway-android:androidSourcesJar gateway-android:androidJavadocsJar gateway-android:generatePomFileForAarPublication
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./gradlew gateway-android:bintrayUpload
+  on:
+    tags: true

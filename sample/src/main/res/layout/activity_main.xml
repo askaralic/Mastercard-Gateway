@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/app_name" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/material_baseline_grid_2x" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/material_baseline_grid_2x" />
+
+        <TextView
+            android:id="@+id/configuration_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_2x"
+            android:text="@string/main_configuration"
+            android:textColor="@color/material_color_black"
+            android:textSize="@dimen/material_typography_regular_title_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/merchant_id_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_2x"
+            app:layout_constraintBottom_toTopOf="@+id/region_layout"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/configuration_label"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/merchant_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/merchant_id"
+                android:hint="@string/main_merchant_id" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/region_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            app:layout_constraintBottom_toTopOf="@+id/merchant_url_layout"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/merchant_id_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/region"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/main_region" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/merchant_url_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/region_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/merchant_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/main_heroku_test_server_url"
+                android:inputType="textUri"
+                android:text="@string/merchant_url"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/last_transaction_token_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/material_baseline_grid_1x"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/merchant_url_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_last_transaction_token"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Last Transaction Card Token"
+                android:inputType="textUri"
+                android:text=""
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_marginBottom="@dimen/material_baseline_grid_2x"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+            app:layout_constraintStart_toStartOf="@+id/guideline_start"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_margin="5px"
+                android:id="@+id/process_payment_button"
+                android:layout_height="wrap_content"
+                android:text="@string/main_process_a_payment"
+                android:paddingStart="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"/>
+            <Button
+                android:layout_margin="5px"
+                android:id="@+id/processLastTokenButton"
+                android:layout_height="wrap_content"
+                android:text="Process Last Token"
+                android:paddingStart="10dp"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
