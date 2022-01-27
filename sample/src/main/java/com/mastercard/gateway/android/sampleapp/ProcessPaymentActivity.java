@@ -222,7 +222,7 @@ public class ProcessPaymentActivity extends AppCompatActivity {
 
         apiController.completeSession(operation,token,sessionId, orderId, transactionId, amount, currency, threeDSecureId, isGooglePay, new CompleteSessionCallback());
         if(operation == 1) {
-            apiController.completeToken(sessionId, new CompleteTokenCallback());
+            apiController.createTokenForFutureTransaction(sessionId, new CompleteTokenCallback());
         }
     }
 

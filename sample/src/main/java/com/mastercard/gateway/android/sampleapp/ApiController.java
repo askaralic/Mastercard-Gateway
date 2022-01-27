@@ -16,7 +16,6 @@
 
 package com.mastercard.gateway.android.sampleapp;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
@@ -26,7 +25,6 @@ import android.util.Pair;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.mastercard.gateway.android.sdk.Gateway;
 import com.mastercard.gateway.android.sdk.GatewayMap;
 
 import java.io.BufferedReader;
@@ -166,7 +164,7 @@ public class ApiController {
         }).start();
     }
 
-    public void completeToken(final String sessionId, final CompleteTokenCallback callback) {
+    public void createTokenForFutureTransaction(final String sessionId, final CompleteTokenCallback callback) {
         final Handler handler = new Handler(message -> {
             if (callback != null) {
                 if (message.obj instanceof Throwable) {
@@ -182,7 +180,7 @@ public class ApiController {
             Message m = handler.obtainMessage();
             GatewayResponse gatewayResponse = new GatewayResponse();
             try {
-                gatewayResponse.token = createToken(sessionId);
+                gatewayResponse.token = createTokenForFutureTransaction(sessionId);
                 m.obj = gatewayResponse;
 
             } catch (Exception e) {
@@ -294,7 +292,7 @@ public class ApiController {
         return (String) response.get("gatewayResponse.result");
     }
 
-    String createToken(String sessionId) throws Exception {
+    String createTokenForFutureTransaction(String sessionId) throws Exception {
         GatewayMap request = new GatewayMap()
                 .set("session.id", sessionId) //.set("sourceOfFunds.token", "5123453069110008") once the you genrated the token instead of session id
                 .set("sourceOfFunds.type", "CARD");
@@ -305,7 +303,6 @@ public class ApiController {
         String jsonResponse = doJsonRequest(new URL("https://ap-gateway.mastercard.com/api/rest/version/60/merchant/" + config.merchantId+"/token"), jsonRequest, "POST", config.merchant_gateway_username, config.merchant_gateway_password, HttpsURLConnection.HTTP_CREATED);
 
         GatewayMap response = new GatewayMap(jsonResponse);
-
         if (!response.containsKey("result") || !response.get("result").equals("SUCCESS")) {
             throw new RuntimeException("Could not read gateway response");
         }

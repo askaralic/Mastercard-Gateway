@@ -1,14 +1,14 @@
 <resources>
-    <string name="sample_card_holder_name"></string>
-    <string name="sample_card_number"></string>
-    <string name="sample_card_expiry_month"></string>
-    <string name="sample_card_expiry_year"></string>
-    <string name="sample_card_cvv"></string>
+    <string name="sample_card_holder_name">Askarali</string>
+    <string name="sample_card_number">5123450000000008</string>
+    <string name="sample_card_expiry_month">05</string>
+    <string name="sample_card_expiry_year">30</string>
+    <string name="sample_card_cvv">100</string>
 
-    <string name="merchant_id"></string>
-    <string name="merchant_url"></string>
-    <string name="merchant_gateway_username"></string>
-    <string name="merchant_gateway_password"></string>
+    <string name="merchant_id">TEST999999440</string>
+    <string name="merchant_url">https://mastercardtesting.herokuapp.com</string>
+    <string name="merchant_gateway_username">merchant.TEST999999440</string>
+    <string name="merchant_gateway_password">5929f2f3cd6060c2f9268982e7d1a3fa</string>
 
 
 </resources>

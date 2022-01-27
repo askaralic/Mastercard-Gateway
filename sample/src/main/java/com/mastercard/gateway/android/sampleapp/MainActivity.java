@@ -13,6 +13,8 @@ import android.text.TextWatcher;
 import com.mastercard.gateway.android.sampleapp.databinding.ActivityMainBinding;
 import com.mastercard.gateway.android.sdk.Gateway;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -39,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         binding.merchantUrl.setText(getString(R.string.merchant_url));
         binding.merchantUrl.addTextChangedListener(textChangeListener);
 
-        binding.processPaymentButton.setOnClickListener(v -> goTo(ProcessPaymentActivity.class, Operation.PaymentProcess.PaymentByCard.getValue()));
-        binding.processLastTokenButton.setOnClickListener(view -> {
-            goTo(ProcessPaymentActivity.class, Operation.PaymentProcess.PaymentByToken.getValue());
-        });
+        binding.processPaymentButton.setOnClickListener(v -> goTo(Operation.PaymentProcess.PaymentByCard.getValue()));
+        binding.processLastTokenButton.setOnClickListener(view -> goTo(Operation.PaymentProcess.PaymentByToken.getValue()));
         enableButtons();
     }
 
@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
         binding.edtLastTransactionToken.setText(Utils.getPreferenceStringValue(ConstantKeys.Token,this));
     }
 
-    void goTo(Class klass,int operation) {
-        Intent intent = new Intent(this, klass);
+    void goTo(int operation) {
+        Intent intent = new Intent(this, ProcessPaymentActivity.class);
         intent.putExtra(ConstantKeys.Amount.getValue(), "2.00");
         intent.putExtra(ConstantKeys.Currency.getValue(), "AED");
-        intent.putExtra(ConstantKeys.Token.getValue(),  binding.edtLastTransactionToken.getText().toString());
+        intent.putExtra(ConstantKeys.Token.getValue(),  Objects.requireNonNull(binding.edtLastTransactionToken.getText()).toString());
         intent.putExtra(ConstantKeys.secureId3D.getValue(),  Utils.getPreferenceStringValue(ConstantKeys.secureId3D,this));
         intent.putExtra(ConstantKeys.Operation.getValue(), operation);
         startActivity(intent);
